@@ -40,5 +40,6 @@ services:
     environment:
       - DOCKER_SOCK=/var/run/docker.sock
       - APP_DATA_DIR=${APP_DATA_DIR}
+      - TZ=UTC
     depends_on:
       - haven_relay
