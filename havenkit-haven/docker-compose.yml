@@ -40,7 +40,7 @@ services:
     environment:
       - DOCKER_SOCK=/var/run/docker.sock
       - APP_DATA_DIR=${APP_DATA_DIR}
-      - COMPOSE_PROJECT_NAME=havenkit-haven
+      - RELAY_CONTAINER_NAME=havenkit-haven_haven_relay_1
       - TZ=UTC
     depends_on:
       - haven_relay
