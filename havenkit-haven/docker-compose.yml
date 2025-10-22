@@ -2,7 +2,7 @@ services:
 
   # Haven Nostr Relay
   haven_relay:
-    image: letdown2491/haven-relay:latest
+    image: letdown2491/haven-relay:v1.2.7
     container_name: haven_relay
     restart: unless-stopped
     ports:
@@ -24,7 +24,7 @@ services:
 
   # Configuration UI
   config_ui:
-    image: letdown2491/haven-config-ui:latest
+    image: letdown2491/haven-config-ui:v1.2.7
     restart: unless-stopped
     ports:
       - "8080:8080"
@@ -36,9 +36,11 @@ services:
       - ${APP_DATA_DIR}/config/.env
     environment:
       - DOCKER_SOCK=/var/run/docker.sock
-      - APP_DATA_DIR=${PWD}/data
+      - CONTAINER_RUNTIME=docker
+      - APP_DATA_DIR=${APP_DATA_DIR}
       - RELAY_CONTAINER_NAME=haven_relay
-      - RELAY_IMAGE=letdown2491/haven-relay:latest
+      - RELAY_IMAGE_NAME=letdown2491/haven-relay:v1.2.7
+      - RELAY_NETWORK=haven-kit_haven_network
       - TZ=UTC
     depends_on:
       - haven_relay

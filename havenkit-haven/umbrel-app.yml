@@ -3,49 +3,53 @@ id: havenkit-haven
 name: Haven
 tagline: High Availability Vault for Events on Nostr
 icon: https://raw.githubusercontent.com/Letdown2491/haven-kit-umbrel/master/assets/haven-icon.svg
-category: Social
-version: "1.1.1"
+category: social
+version: "1.2.7"
 port: 8080
 description: >-
-  Haven is a specialized Nostr relay system that provides a complete infrastructure for managing your Nostr presence.
+  Haven is a sovereign personal relay for the Nostr protocol, designed for storing
+  and backing up sensitive notes like eCash, private chats, and drafts.
 
 
-  Haven consists of five interconnected relay components:
+  Haven operates as four specialized relays in one application:
 
-  - Private Relay: Secure storage for drafts and sensitive content
+  - Private Relay: Restricted to the owner for drafts and sensitive content
 
-  - Chat Relay: Direct messaging with web-of-trust validation
+  - Chat Relay: For direct messages with web-of-trust filtering
 
-  - Inbox Relay: Centralized location for mentions and tags
+  - Inbox Relay: Aggregates notes where the owner is mentioned
 
-  - Outbox Relay: Public-facing storage for your posts
+  - Outbox Relay: Publicly accessible storage for owner's posts
 
-  - Blossom Media Server: Image and video content hosting
+  - Blossom Media Server: Hosts images and videos for sharing
 
 
-  Easily configure your relay settings, manage backups, and connect to the Nostr network through an intuitive web interface.
+  Features include intelligent filtering through web-of-trust protection, automatic
+  note aggregation from other relays, cloud backup capabilities, and broadcast
+  distribution to multiple relays simultaneously.
 
-developer: Haven Kit Team
-website: https://github.com/Letdown2491/haven-kit
-submitter: Letdown2491
-submission: https://github.com/Letdown2491/haven-kit
-repo: https://github.com/Letdown2491/haven-kit
-support: https://github.com/Letdown2491/haven-kit/issues
+developer: Bitvora
+website: https://github.com/bitvora/haven
+submitter: Haven Community
+submission: https://github.com/getumbrel/umbrel-apps
+repo: https://github.com/bitvora/haven
+support: https://github.com/bitvora/haven/issues
 gallery:
   - https://raw.githubusercontent.com/Letdown2491/haven-kit-umbrel/master/assets/haven-kit-info.png
   - https://raw.githubusercontent.com/Letdown2491/haven-kit-umbrel/master/assets/haven-kit-configuration.png
 releaseNotes: >-
-  Initial release of Haven for Umbrel Community App Store.
+  Initial release of Haven for Umbrel with configuration UI.
 
-  - Web-based configuration UI
 
-  - Multi-relay architecture (Private, Chat, Inbox, Outbox, Blossom)
+  Features:
 
-  - Support for BadgerDB and LMDB
+  - Web-based configuration interface for .env settings
 
-  - S3-compatible backup integration
+  - GUI editors for relay configurations (blastr and import)
 
-  - Blastr relay broadcasting
+  - One-click restart functionality
+
+  - Status monitoring
 dependencies: []
 path: ""
 defaultUsername: ""
