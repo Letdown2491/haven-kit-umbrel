@@ -1,0 +1,12 @@
+{
+  "relay_name": "Haven Relay",
+  "relay_url": "ws://localhost:3355",
+  "database": {
+    "type": "badgerdb",
+    "path": "/haven/db"
+  },
+  "blossom": {
+    "enabled": true,
+    "path": "/haven/blossom"
+  }
+}

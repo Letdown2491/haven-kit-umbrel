@@ -4,7 +4,7 @@ name: Haven
 tagline: High Availability Vault for Events on Nostr
 icon: https://raw.githubusercontent.com/Letdown2491/haven-kit-umbrel/master/assets/haven-icon.svg
 category: Social
-version: "1.0.0"
+version: "1.1.1"
 port: 8080
 description: >-
   Haven is a specialized Nostr relay system that provides a complete infrastructure for managing your Nostr presence.
