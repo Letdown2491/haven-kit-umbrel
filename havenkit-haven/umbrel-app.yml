@@ -1,0 +1,51 @@
+manifestVersion: 1
+id: havenkit-haven
+name: Haven
+tagline: High Availability Vault for Events on Nostr
+icon: https://raw.githubusercontent.com/Letdown2491/haven-kit/main/assets/haven-icon.png
+category: Social
+version: "1.0.0"
+port: 8080
+description: >-
+  Haven is a specialized Nostr relay system that provides a complete infrastructure for managing your Nostr presence.
+
+
+  Haven consists of five interconnected relay components:
+
+  - Private Relay: Secure storage for drafts and sensitive content
+
+  - Chat Relay: Direct messaging with web-of-trust validation
+
+  - Inbox Relay: Centralized location for mentions and tags
+
+  - Outbox Relay: Public-facing storage for your posts
+
+  - Blossom Media Server: Image and video content hosting
+
+
+  Easily configure your relay settings, manage backups, and connect to the Nostr network through an intuitive web interface.
+
+developer: Haven Kit Team
+website: https://github.com/Letdown2491/haven-kit
+submitter: Letdown2491
+submission: https://github.com/Letdown2491/haven-kit
+repo: https://github.com/Letdown2491/haven-kit
+support: https://github.com/Letdown2491/haven-kit/issues
+gallery:
+  - https://i.imgur.com/yyVG0Jb.jpeg
+releaseNotes: >-
+  Initial release of Haven for Umbrel Community App Store.
+
+  - Web-based configuration UI
+
+  - Multi-relay architecture (Private, Chat, Inbox, Outbox, Blossom)
+
+  - Support for BadgerDB and LMDB
+
+  - S3-compatible backup integration
+
+  - Blastr relay broadcasting
+dependencies: []
+path: ""
+defaultUsername: ""
+defaultPassword: ""

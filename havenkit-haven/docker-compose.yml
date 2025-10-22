@@ -1,0 +1,44 @@
+version: "3.7"
+
+services:
+
+  app_proxy:
+    environment:
+      # The format here is: <app-id>_<docker-service-name>_1
+      APP_HOST: havenkit-haven_config_ui_1
+      APP_PORT: 8080
+
+  # Haven Nostr Relay
+  haven_relay:
+    image: letdown2491/haven-relay:latest
+    restart: unless-stopped
+    ports:
+      - "3355:3355"
+    volumes:
+      - ${APP_DATA_DIR}/config:/haven-config
+      - ${APP_DATA_DIR}/blossom:/haven/blossom
+      - ${APP_DATA_DIR}/db:/haven/db
+    environment:
+      - TZ=UTC
+    networks:
+      - default
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:3355"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Configuration UI
+  config_ui:
+    image: letdown2491/haven-config-ui:latest
+    restart: unless-stopped
+    volumes:
+      - ${APP_DATA_DIR}/config:/haven-config
+      - /var/run/docker.sock:/var/run/docker.sock
+    working_dir: /
+    environment:
+      - DOCKER_SOCK=/var/run/docker.sock
+      - APP_DATA_DIR=${APP_DATA_DIR}
+    depends_on:
+      - haven_relay
