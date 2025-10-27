@@ -35,8 +35,8 @@ submission: https://github.com/getumbrel/umbrel-apps
 repo: https://github.com/bitvora/haven
 support: https://github.com/bitvora/haven/issues
 gallery:
-  - https://raw.githubusercontent.com/Letdown2491/haven-kit-umbrel/master/assets/haven-kit-info.png
-  - https://raw.githubusercontent.com/Letdown2491/haven-kit-umbrel/master/assets/haven-kit-configuration.png
+  - https://raw.githubusercontent.com/Letdown2491/haven-kit-umbrel/master/assets/haven-kit-info.jpg
+  - https://raw.githubusercontent.com/Letdown2491/haven-kit-umbrel/master/assets/haven-kit-configuration.jpg
 releaseNotes: >-
   Initial release of Haven for Umbrel with configuration UI.
 
