@@ -3,8 +3,8 @@
 # - Tor hidden service host → Haven relay (websocket + Blossom) on port 3355
 
 map $host $haven_upstream {
-    default config_ui:8080;
-    ${APP_HIDDEN_SERVICE:-tor-disabled.local} haven_relay:3355;
+    default http://config_ui:8080;
+    ${APP_HIDDEN_SERVICE:-tor-disabled.local} http://haven_relay:3355;
 }
 
 server {
@@ -12,7 +12,7 @@ server {
     server_name _;
 
     location / {
-        proxy_pass http://$haven_upstream;
+        proxy_pass $haven_upstream;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection "upgrade";
