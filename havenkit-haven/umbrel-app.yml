@@ -28,12 +28,12 @@ description: >-
   note aggregation from other relays, cloud backup capabilities, and broadcast
   distribution to multiple relays simultaneously.
 
-developer: Bitvora
-website: https://github.com/bitvora/haven
-submitter: Haven Community
+developer: Letdown2491
+website: https://github.com/Letdown2491/haven-kit-umbrel
+submitter: Letdown2491
 submission: https://github.com/getumbrel/umbrel-apps
-repo: https://github.com/bitvora/haven
-support: https://github.com/bitvora/haven/issues
+repo: https://github.com/Letdown2491/haven-kit-umbrel
+support: https://github.com/Letdown2491/haven-kit-umbrel/issues
 gallery:
   - https://raw.githubusercontent.com/Letdown2491/haven-kit-umbrel/master/assets/haven-kit-info.jpg
   - https://raw.githubusercontent.com/Letdown2491/haven-kit-umbrel/master/assets/haven-kit-configuration.jpg
