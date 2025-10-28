@@ -25,10 +25,6 @@ server {
     listen 80;
     server_name ${APP_HIDDEN_SERVICE:-tor-disabled.local};
 
-    if ("${APP_HIDDEN_SERVICE}" = "") {
-        return 404;
-    }
-
     location / {
         proxy_pass http://haven_relay:3355;
         proxy_http_version 1.1;
