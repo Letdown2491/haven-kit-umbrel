@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Haven pre-install script
+# This script sets up the configuration directory and .env file
+
+APP_DATA_DIR="${APP_DATA_DIR}"
+
+echo "Setting up Haven configuration..."
+
+# Create config directory if it doesn't exist
+mkdir -p "${APP_DATA_DIR}/config"
+
+# Copy .env template if it doesn't exist
+if [ ! -f "${APP_DATA_DIR}/config/.env" ]; then
+    echo "Copying default .env configuration..."
+    cp "${UMBREL_ROOT}/apps/havenkit-haven/data/config/.env" "${APP_DATA_DIR}/config/.env"
+    echo ".env file created successfully"
+else
+    echo ".env file already exists, skipping..."
+fi
+
+# Copy relay configuration files if they don't exist
+if [ ! -f "${APP_DATA_DIR}/config/relays_blastr.json" ]; then
+    echo "Copying default blastr relays configuration..."
+    cp "${UMBREL_ROOT}/apps/havenkit-haven/data/config/relays_blastr.json" "${APP_DATA_DIR}/config/relays_blastr.json"
+fi
+
+if [ ! -f "${APP_DATA_DIR}/config/relays_import.json" ]; then
+    echo "Copying default import relays configuration..."
+    cp "${UMBREL_ROOT}/apps/havenkit-haven/data/config/relays_import.json" "${APP_DATA_DIR}/config/relays_import.json"
+fi
+
+# Create other necessary directories
+mkdir -p "${APP_DATA_DIR}/blossom"
+mkdir -p "${APP_DATA_DIR}/db"
+
+echo "Haven pre-install setup complete!"

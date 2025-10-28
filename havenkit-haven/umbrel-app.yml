@@ -38,18 +38,7 @@ gallery:
   - https://raw.githubusercontent.com/Letdown2491/haven-kit-umbrel/master/assets/haven-kit-info.jpg
   - https://raw.githubusercontent.com/Letdown2491/haven-kit-umbrel/master/assets/haven-kit-configuration.jpg
 releaseNotes: >-
-  Initial release of Haven for Umbrel with configuration UI.
-
-
-  Features:
-
-  - Web-based configuration interface for .env settings
-
-  - GUI editors for relay configurations (blastr and import)
-
-  - One-click restart functionality
-
-  - Status monitoring
+  Initial implementation of Tor support for HAVEN Kit for Umbrel.
 dependencies: []
 path: ""
 defaultUsername: ""

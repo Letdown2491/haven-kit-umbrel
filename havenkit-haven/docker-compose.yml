@@ -13,8 +13,6 @@ services:
       - ${APP_DATA_DIR}/db:/haven/db
     env_file:
       - ${APP_DATA_DIR}/config/.env
-    networks:
-      - haven-kit_haven_network
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://localhost:3355"]
       interval: 30s
@@ -40,14 +38,12 @@ services:
       - APP_DATA_DIR=${APP_DATA_DIR}
       - RELAY_CONTAINER_NAME=haven_relay
       - RELAY_IMAGE_NAME=letdown2491/haven-relay:v1.3.3
-      - RELAY_NETWORK=haven-kit_haven_network
       - TZ=UTC
     depends_on:
       - haven_relay
-    networks:
-      - haven-kit_haven_network
 
-networks:
-  haven-kit_haven_network:
-    name: haven-kit_haven_network
-    driver: bridge
+  # App Proxy for Umbrel integration
+  app_proxy:
+    environment:
+      APP_HOST: config_ui
+      APP_PORT: 8080
