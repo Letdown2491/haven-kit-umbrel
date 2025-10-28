@@ -3,7 +3,7 @@
 # - Tor hidden service host → Haven relay (websocket + Blossom) on port 3355
 
 server {
-    listen 80;
+    listen 8080;
     server_name
         ${DEVICE_HOSTNAME:-umbrel}
         ${DEVICE_HOSTNAME:-umbrel}.local
@@ -22,7 +22,7 @@ server {
 }
 
 server {
-    listen 80;
+    listen 8080;
     server_name ${APP_HIDDEN_SERVICE:-tor-disabled.local};
 
     location / {
@@ -38,6 +38,6 @@ server {
 }
 
 server {
-    listen 80 default_server;
+    listen 8080 default_server;
     return 403;
 }
