@@ -5,9 +5,9 @@
 server {
     listen 80;
     server_name
-        ${DEVICE_HOSTNAME}
-        ${DEVICE_HOSTNAME}.local
-        ${DEVICE_DOMAIN_NAME}
+        ${DEVICE_HOSTNAME:-umbrel}
+        ${DEVICE_HOSTNAME:-umbrel}.local
+        ${DEVICE_DOMAIN_NAME:-umbrel.local}
         umbrel.local
         localhost
         127.0.0.1;
@@ -23,7 +23,11 @@ server {
 
 server {
     listen 80;
-    server_name ${APP_HIDDEN_SERVICE};
+    server_name ${APP_HIDDEN_SERVICE:-tor-disabled.local};
+
+    if ("${APP_HIDDEN_SERVICE}" = "") {
+        return 404;
+    }
 
     location / {
         proxy_pass http://haven_relay:3355;
