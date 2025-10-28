@@ -1,6 +1,6 @@
 manifestVersion: 1
 id: havenkit-haven
-name: Haven
+name: HAVEN Kit
 tagline: High Availability Vault for Events on Nostr
 icon: https://raw.githubusercontent.com/Letdown2491/haven-kit-umbrel/master/assets/haven-icon.svg
 category: social
