@@ -4,8 +4,6 @@ set -euo pipefail
 # Haven pre-install script
 # This script sets up the configuration directory and .env file
 
-APP_DATA_DIR="${APP_DATA_DIR}"
-
 echo "Setting up Haven configuration..."
 
 # Create config directory if it doesn't exist
