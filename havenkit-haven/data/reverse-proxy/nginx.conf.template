@@ -10,6 +10,7 @@ map $host $haven_upstream {
 server {
     listen 8080 default_server;
     server_name _;
+    resolver 127.0.0.11 ipv6=off;
 
     location / {
         proxy_pass $haven_upstream;
