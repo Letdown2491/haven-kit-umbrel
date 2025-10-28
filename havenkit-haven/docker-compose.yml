@@ -32,6 +32,7 @@ services:
       - DOCKER_SOCK=/var/run/docker.sock
       - CONTAINER_RUNTIME=docker
       - APP_DATA_DIR=${APP_DATA_DIR}
+      - APP_HIDDEN_SERVICE=${APP_HIDDEN_SERVICE}
       - RELAY_CONTAINER_NAME=haven_relay
       - RELAY_IMAGE_NAME=letdown2491/haven-relay:v1.3.3
       - TZ=UTC
