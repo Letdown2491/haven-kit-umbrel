@@ -36,5 +36,12 @@ fi
 # Create other necessary directories
 mkdir -p "${APP_DATA_DIR}/blossom"
 mkdir -p "${APP_DATA_DIR}/db"
+mkdir -p "${APP_DATA_DIR}/reverse-proxy"
+
+# Seed reverse proxy configuration if missing
+if [ ! -f "${APP_DATA_DIR}/reverse-proxy/nginx.conf.template" ]; then
+    echo "Copying default reverse proxy configuration..."
+    cp "${APP_DATA_DIR}/data/reverse-proxy/nginx.conf.template" "${APP_DATA_DIR}/reverse-proxy/nginx.conf.template"
+fi
 
 echo "Haven pre-install setup complete!"
