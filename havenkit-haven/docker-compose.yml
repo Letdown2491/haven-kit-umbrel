@@ -56,5 +56,5 @@ services:
   # App Proxy for Umbrel integration
   app_proxy:
     environment:
-      APP_HOST: reverse_proxy
+      APP_HOST: havenkit-haven_reverse_proxy_1
       APP_PORT: 8080
