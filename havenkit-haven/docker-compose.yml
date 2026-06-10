@@ -1,10 +1,19 @@
 services:
 
+  # App Proxy for Umbrel integration (serves the config UI, behind Umbrel auth)
+  app_proxy:
+    environment:
+      APP_HOST: $APP_HAVEN_CONFIG_UI_IP
+      APP_PORT: 8080
+
   # Haven Nostr Relay
   haven_relay:
-    image: letdown2491/haven-relay:v1.3.3
+    image: letdown2491/haven-relay:v1.4.0
     container_name: haven_relay
     restart: unless-stopped
+    ports:
+      # Clearnet LAN access to the relay + Blossom media server
+      - "3355:3355"
     volumes:
       - ${APP_DATA_DIR}/config:/haven-config
       - ${APP_DATA_DIR}/blossom:/haven/blossom
@@ -17,14 +26,20 @@ services:
       timeout: 10s
       retries: 3
       start_period: 40s
+    networks:
+      default:
+        ipv4_address: $APP_HAVEN_RELAY_IP
 
   # Configuration UI
   config_ui:
-    image: letdown2491/haven-config-ui:v1.3.3
+    image: letdown2491/haven-config-ui:v1.4.0
     restart: unless-stopped
     volumes:
       - ${APP_DATA_DIR}/config:/haven-config
       - /var/run/docker.sock:/var/run/docker.sock
+      # Read-only view of Tor data so the UI can display the relay's .onion
+      # address (written by the tor sidecar below)
+      - ${TOR_DATA_DIR}:/tor:ro
     working_dir: /
     env_file:
       - ${APP_DATA_DIR}/config/.env
@@ -33,29 +48,27 @@ services:
       - CONTAINER_RUNTIME=docker
       - APP_DATA_DIR=${APP_DATA_DIR}
       - APP_HIDDEN_SERVICE=${APP_HIDDEN_SERVICE}
+      - RELAY_HIDDEN_SERVICE_FILE=/tor/app-havenkit-haven-relay/hostname
       - RELAY_CONTAINER_NAME=haven_relay
-      - RELAY_IMAGE_NAME=letdown2491/haven-relay:v1.3.3
+      - RELAY_IMAGE_NAME=letdown2491/haven-relay:v1.4.0
       - TZ=UTC
     depends_on:
       - haven_relay
+    networks:
+      default:
+        ipv4_address: $APP_HAVEN_CONFIG_UI_IP
 
-  # Reverse proxy to split Tor vs clearnet routing
-  reverse_proxy:
-    image: nginx:1.25-alpine
-    restart: unless-stopped
+  # Dedicated Tor hidden service exposing the relay (NOT the config UI, which
+  # stays behind Umbrel's auth via app_proxy). Umbrel renders torrc.template
+  # into ${APP_DATA_DIR}/torrc and provides TOR_DATA_DIR.
+  tor:
+    image: getumbrel/tor:0.4.7.8@sha256:2ace83f22501f58857fa9b403009f595137fa2e7986c4fda79d82a8119072b6a
+    user: "1000:1000"
+    restart: on-failure
     volumes:
-      - ${APP_DATA_DIR}/reverse-proxy/nginx.conf.template:/etc/nginx/templates/default.conf.template:ro
+      - ${APP_DATA_DIR}/torrc:/etc/tor/torrc:ro
+      - ${TOR_DATA_DIR}:/data
     environment:
-      - NGINX_ENVSUBST_OUTPUT_DIR=/etc/nginx/conf.d
-      - APP_HIDDEN_SERVICE=${APP_HIDDEN_SERVICE}
-      - DEVICE_HOSTNAME=${DEVICE_HOSTNAME}
-      - DEVICE_DOMAIN_NAME=${DEVICE_DOMAIN_NAME}
+      HOME: "/tmp"
     depends_on:
-      - config_ui
       - haven_relay
-
-  # App Proxy for Umbrel integration
-  app_proxy:
-    environment:
-      APP_HOST: reverse_proxy
-      APP_PORT: 8080

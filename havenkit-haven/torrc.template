@@ -1,0 +1,4 @@
+# Haven relay + Blossom media server hidden service.
+# Nostr clients connect to ws://<onion-address> (port 80 -> relay port 3355).
+HiddenServiceDir /data/app-$APP_ID-relay
+HiddenServicePort 80 $APP_HAVEN_RELAY_IP:3355

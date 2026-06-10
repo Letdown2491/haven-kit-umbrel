@@ -16,6 +16,7 @@ Haven is a specialized Nostr relay system that provides a complete infrastructur
 
 - Web-based configuration UI for easy setup
 - Multi-relay architecture for specialized content handling
+- Dedicated Tor hidden service for the relay and Blossom media server (.onion address shown in the UI)
 - Support for BadgerDB and LMDB database engines
 - S3-compatible backup integration
 - Blastr relay broadcasting support
@@ -52,16 +53,18 @@ This app store currently features:
 
 ### Services
 
-Haven runs two main services:
+Haven runs three services:
 
-1. **haven_relay** (Port 3355): The core relay engine built from the [bitvora/haven](https://github.com/bitvora/haven) project
+1. **haven_relay** (Port 3355): The core relay engine built from the [barrydeen/haven](https://github.com/barrydeen/haven) project
 2. **config_ui** (Port 8080): Flask-based web interface for configuration
+3. **tor**: Publishes the relay and Blossom media server as a Tor hidden service; the .onion address is shown in the configuration UI
 
 ### Docker Images
 
-The app uses the following Docker images:
-- `letdown2491/haven-relay:latest`
-- `letdown2491/haven-config-ui:latest`
+The app uses the following Docker images (pinned to the release version):
+- `letdown2491/haven-relay`
+- `letdown2491/haven-config-ui`
+- `getumbrel/tor`
 
 ### Data Persistence
 
