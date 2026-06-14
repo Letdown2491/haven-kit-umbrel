@@ -4,7 +4,7 @@ name: HAVEN Kit
 tagline: High Availability Vault for Events on Nostr
 icon: https://raw.githubusercontent.com/Letdown2491/haven-kit-umbrel/master/assets/haven-icon.svg
 category: social
-version: "1.4.0"
+version: "1.5.0"
 port: 8080
 description: >-
   Haven is a sovereign personal relay for the Nostr protocol, designed for storing
@@ -38,21 +38,16 @@ gallery:
   - https://raw.githubusercontent.com/Letdown2491/haven-kit-umbrel/master/assets/haven-kit-info.jpg
   - https://raw.githubusercontent.com/Letdown2491/haven-kit-umbrel/master/assets/haven-kit-configuration.jpg
 releaseNotes: >-
-  Fresh installs now start unconfigured: the relay waits for you to complete
-  the setup wizard instead of shipping with preconfigured ownership, and
-  starts automatically once configured. Existing installs are unaffected; if
-  you installed previously and never ran the setup wizard, open the app and
-  configure your own npub.
+  This release hardens setup against mistyped keys and adds a timezone picker.
 
 
-  Also fixes Blossom media downloads failing when RELAY_URL included a
-  ws:// or wss:// scheme - schemes are now stripped automatically on startup.
+  - A mistyped npub is now caught the moment you enter it, with a clear error,
+    instead of being saved and silently crash-looping the relay. The setup
+    wizard, the save endpoint, and the relay startup check all verify the npub's
+    bech32 checksum, not just its shape.
 
-
-  New: the relay and Blossom media server now get their own dedicated Tor
-  hidden service. Find the .onion address in the configuration UI and share
-  it to give Nostr clients read/write access to your relay over Tor. The
-  configuration UI itself stays protected behind your Umbrel login.
+  - Added a timezone selector (IANA zones) in Relay Configuration for relay log
+    timestamps; previously the timezone could only be set by hand-editing .env.
 dependencies: []
 path: ""
 defaultUsername: ""
