@@ -4,7 +4,7 @@ name: HAVEN Kit
 tagline: High Availability Vault for Events on Nostr
 icon: https://raw.githubusercontent.com/Letdown2491/haven-kit-umbrel/master/assets/haven-icon.svg
 category: social
-version: "1.5.0"
+version: "1.5.1"
 port: 8080
 description: >-
   Haven is a sovereign personal relay for the Nostr protocol, designed for storing
@@ -38,16 +38,18 @@ gallery:
   - https://raw.githubusercontent.com/Letdown2491/haven-kit-umbrel/master/assets/haven-kit-info.jpg
   - https://raw.githubusercontent.com/Letdown2491/haven-kit-umbrel/master/assets/haven-kit-configuration.jpg
 releaseNotes: >-
-  This release hardens setup against mistyped keys and adds a timezone picker.
+  This release fixes Blossom media being lost on every relay restart.
 
 
-  - A mistyped npub is now caught the moment you enter it, with a clear error,
-    instead of being saved and silently crash-looping the relay. The setup
-    wizard, the save endpoint, and the relay startup check all verify the npub's
-    bech32 checksum, not just its shape.
+  Uploaded images and videos now persist across restarts. The media storage
+  path was missing a trailing slash, so uploads were written outside the mounted
+  volume and disappeared when the relay restarted (clients saw them until then,
+  then got 404s). Defaults are corrected, the config UI normalizes the path you
+  enter, and the relay repairs a bad value on startup.
 
-  - Added a timezone selector (IANA zones) in Relay Configuration for relay log
-    timestamps; previously the timezone could only be set by hand-editing .env.
+
+  Note: media uploaded before this update was never saved to disk and cannot be
+  recovered; the fix only makes future uploads persist.
 dependencies: []
 path: ""
 defaultUsername: ""

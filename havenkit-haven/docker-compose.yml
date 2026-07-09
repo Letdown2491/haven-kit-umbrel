@@ -8,7 +8,7 @@ services:
 
   # Haven Nostr Relay
   haven_relay:
-    image: letdown2491/haven-relay:v1.5.0
+    image: letdown2491/haven-relay:v1.5.1
     container_name: haven_relay
     restart: unless-stopped
     ports:
@@ -32,7 +32,7 @@ services:
 
   # Configuration UI
   config_ui:
-    image: letdown2491/haven-config-ui:v1.5.0
+    image: letdown2491/haven-config-ui:v1.5.1
     restart: unless-stopped
     volumes:
       - ${APP_DATA_DIR}/config:/haven-config
@@ -50,7 +50,7 @@ services:
       - APP_HIDDEN_SERVICE=${APP_HIDDEN_SERVICE}
       - RELAY_HIDDEN_SERVICE_FILE=/tor/app-havenkit-haven-relay/hostname
       - RELAY_CONTAINER_NAME=haven_relay
-      - RELAY_IMAGE_NAME=letdown2491/haven-relay:v1.5.0
+      - RELAY_IMAGE_NAME=letdown2491/haven-relay:v1.5.1
       - TZ=UTC
     depends_on:
       - haven_relay
